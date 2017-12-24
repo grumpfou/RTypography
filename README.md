@@ -30,6 +30,7 @@ Prints the changes on the file foo.txt
 
 Export the text in English, French, etc.
 > python3 RTypography.py --language en foo.txt
+
 > python3 RTypography.py --language fr foo.txt
 
 To specify the file to which you want to export:
