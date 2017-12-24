@@ -33,9 +33,9 @@ _ a __init__ method with :
 - the possibly method mentioned in the values of the
 	shortcuts_correction_plugins
 """
-from PyQt4 import QtGui, QtCore
 
 class TLRuleAbstract:
+	number = -1
 	title="None"
 	description="None"
 	profile = 0
@@ -108,6 +108,16 @@ class Language:
 		"""Return the right char at the distance n from the cursor (n=1 means
 		the one just on the right)."""
 		return cursor.nextChar(n=n)
+
+
+	def getDescriptionRules(self):
+		"""Returns a summary of all the rules of the language"""
+		rules = self.afterCharRules + self.afterWordRules
+
+		res = "\n".join(["Rule %i: %s"%(r.number,r.title) for r in rules])
+		# 	+= "\n".join(["\x1b[4;30;42Rule %i: %s\x1b[0m"%(r.number,r.title) for r in rules])
+		return res
+
 
 dict_languages = dict()
 import pathlib

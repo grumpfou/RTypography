@@ -1,6 +1,7 @@
 
 
 class TLRuleEnglish0001 (TLRuleAbstract):
+	number = 1
 	title="No space before a space or a break of line"
 	description=	\
 		"It deletes the space before another space of a break of line\n \n\
@@ -15,6 +16,7 @@ class TLRuleEnglish0001 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0002 (TLRuleAbstract):
+	number = 2
 	title="No space or unbreakable space after an unbreakable space"
 	description=	\
 		"It delete the space or an unbreakable space (\\US) after an "+\
@@ -29,6 +31,7 @@ class TLRuleEnglish0002 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0003 (TLRuleAbstract):
+	number = 3
 	title="No space or unbreakable space  after a break of line."
 
 	description=	\
@@ -58,6 +61,7 @@ class TLRuleEnglish0003old (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0004 (TLRuleAbstract):
+	number = 4
 	title="No space or unbreakable space before ',', ';', ':', '!', '?'"
 	description=	\
 		"Delete a space or an unbreakable space (US) before some "+\
@@ -80,6 +84,7 @@ class TLRuleEnglish0004 (TLRuleAbstract):
 
 
 class TLRuleEnglish0005 (TLRuleAbstract):
+	number = 5
 	title="Replace the char [\"] by a opening or closing guillemet"
 	description=	\
 		"When pressing the char [\"], it replace by : an opening guillemet "+\
@@ -104,6 +109,7 @@ class TLRuleEnglish0005 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0006 (TLRuleAbstract):
+	number = 6
 	title="No space or unbreakable space after an opening guillemet."
 	description=	\
 		"It deletes any space or unbreakable space (US) after an opening "+\
@@ -120,6 +126,7 @@ class TLRuleEnglish0006 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0007 (TLRuleAbstract):
+	number = 7
 	title="No space or unbreakable space before an closing guillemet."
 	description=	\
 		"It deletes any space or unbreakable space (US) before an closing "+\
@@ -138,6 +145,7 @@ class TLRuleEnglish0007 (TLRuleAbstract):
 
 
 class TLRuleEnglish0008 (TLRuleAbstract):
+	number = 8
 	title="A space or a newline after ';', ':', '!' or '?' except if it a "+\
 		"closing guillemet (CG) or '!', '?'"
 	description=	\
@@ -168,6 +176,7 @@ class TLRuleEnglish0008 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0009 (TLRuleAbstract):
+	number = 9
 	title="A space or a newline after '.' or ',' except if it is a figure "+\
 		"or a closing guillemet (CG) or another dot"
 	description=	\
@@ -193,6 +202,7 @@ class TLRuleEnglish0009 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0010 (TLRuleAbstract):
+	number = 10
 	title="Replace the typewriter apostrophe by a curved apostrophe."
 	description=	\
 		"Replace a the char ['] by a curved apostrophe (CA).\n\
@@ -206,6 +216,7 @@ class TLRuleEnglish0010 (TLRuleAbstract):
 		return False
 
 class TLRuleEnglish0011 (TLRuleAbstract):
+	number = 11
 	title="Replace 3 consecutive points by an ellipsis."
 	description=	\
 		"Replace 3 consecutive points into an ellipsis (E):\n\
@@ -238,3 +249,4 @@ language = Language(name="English",code="en",
 					TLRuleEnglish0010,
 					TLRuleEnglish0011]
 					)
+					

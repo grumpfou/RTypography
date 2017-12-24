@@ -1,5 +1,6 @@
 
 class TLRuleFrench0001 (TLRuleAbstract):
+	number = 1
 	title="No space before a space or a break of line"
 	description=	\
 		"It deletes the space before another space of a break of line\n"+\
@@ -15,6 +16,7 @@ class TLRuleFrench0001 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0002 (TLRuleAbstract):
+	number = 2
 	title="No space or unbreakable space after an unbreakable space"
 	description=	\
 		"It delete the space or an unbreakable space (\\US) after an "+\
@@ -29,6 +31,7 @@ class TLRuleFrench0002 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0003 (TLRuleAbstract):
+	number = 3
 	title="No space or unbreakable space  after a break of line."
 
 	description=	\
@@ -58,6 +61,7 @@ class TLRuleFrench0003_old (TLRuleAbstract):
 			return True
 		return False
 class TLRuleFrench0004 (TLRuleAbstract):
+	number = 4
 	title="An unbreakable space before ';', ':', '!', '?', and closing "+\
 		"guillemets."
 	description=	\
@@ -83,6 +87,7 @@ class TLRuleFrench0004 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0005 (TLRuleAbstract):
+	number = 5
 	title="An unbreakable space after an opening guillemet"
 	description=	\
 		"It puts an unbreakable space (US) after an opening gullemet (OG) "+\
@@ -103,6 +108,7 @@ class TLRuleFrench0005 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0006 (TLRuleAbstract):
+	number = 6
 	title="No unbreakable space if it is not before a ponctuation or after "+\
 			"an oppening guillemet or after a dialog dash, or a number."
 	description=	\
@@ -131,6 +137,7 @@ class TLRuleFrench0006 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0007 (TLRuleAbstract):
+	number = 7
 	title="No space before a point or a comma."
 	description=	\
 		"It deletes a space or an unbreakable space (US) before a comma.\n"+\
@@ -146,6 +153,7 @@ class TLRuleFrench0007 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0008 (TLRuleAbstract):
+	number = 8
 	title="A space or a newline after ';' or ':'."
 	description=	\
 		"Check if there is a newline or a space after ';' or ':' and if it "+\
@@ -166,6 +174,7 @@ class TLRuleFrench0008 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0009 (TLRuleAbstract):
+	number = 9
 	title="Replace the typewriter apostrophe by a curved apostrophe."
 	description=	\
 		"Replace a the char ['] by a curved apostrophe (CA).\n\
@@ -179,6 +188,7 @@ class TLRuleFrench0009 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0010 (TLRuleAbstract):
+	number = 10
 	title="Replace the char [\"] by a opening or closing guillemet"
 	description=	\
 		"When pressing the char [\"], it replace by : an opening guillemet "+\
@@ -203,6 +213,7 @@ class TLRuleFrench0010 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0011 (TLRuleAbstract):
+	number = 11
 	title='''Replace '"' by an openning/closing guillement'''
 	description='''Replace '"' by an openning/closing guillement'''
 	in_languges=[u'French']
@@ -220,6 +231,7 @@ class TLRuleFrench0011 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0012 (TLRuleAbstract):
+	number = 12
 	title="Replace 3 consecutive points by an ellipsis."
 	description=	\
 		"Replace 3 consecutive points into an ellipsis (E):\n"+\
@@ -238,6 +250,7 @@ class TLRuleFrench0012 (TLRuleAbstract):
 		return False
 
 class TLRuleFrench0013 (TLRuleAbstract):
+	number = 13
 	title="An unbreakable space before after a diolog dash."
 	description=	\
 		"It puts an unbreakable space (US) after a diolog dash (DD) (or "+\
@@ -259,6 +272,7 @@ class TLRuleFrench0013 (TLRuleAbstract):
 		return False
 
 class TLWordCorrectionRuleFrench0001 (TLRuleAbstract):
+	number = 1001
 	title=u"Replace the 'oe' by 'u'\u0153''"
 	description=	\
 		"In French, most of the word with 'oe' have an elision"
