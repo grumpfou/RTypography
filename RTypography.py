@@ -4,7 +4,7 @@ import argparse
 from RTypographyLanguages import *
 from RTypographyDocument import *
 
-__version__ = "0.9"
+__version__ = "1.0alpha"
 about = """
 RTypography is a software that correct the typography in text files. It has been
 written by Renaud Helbig (Grumpfou). It is published under the license the
@@ -15,17 +15,20 @@ Software version %s.
 See: https://github.com/grumpfou/RTypography
 """%__version__
 
+def testPyQt():
+	try:
+		import PyQt5
+	except:
+		return False
+	return True
+
 
 class ConsoleInterpret:
 	"""
 	Will be the console version of the software, it uses the function
 	contained in AWCore to open, save, export etc. the files
 	"""
-	class Error(Exception):
-		def __init__(self,message):
-			self.message = message
-		def __str__(self):
-			print(self.message)
+	class Error(Exception):pass
 
 	def __init__(self):
 		self.argv =	sys.argv
@@ -45,7 +48,11 @@ class ConsoleInterpret:
 			help="The file where to export",
 			nargs='?')
 
-		self.parser.add_argument("--print_exclude",
+		self.parser.add_argument("--gui",
+			help="Graphical interface (need PyQt5)",
+			dest='gui',action="store_true")
+
+		self.parser.add_argument("--print_excludes",
 			help="Will show on the document the exclusions",
 			action="store_true")
 
@@ -64,6 +71,20 @@ class ConsoleInterpret:
 		if self.args.about:
 			print(about)
 			return True
+		if self.args.gui:
+			if not testPyQt():
+				raise self.Error("You should first install the library PyQt5.")
+			import RTypographyGuiDocument
+			from PyQt5 import  QtWidgets
+			app = QtWidgets.QApplication(sys.argv)
+			d = RTypographyGuiDocument.GuiMainWindow(language=self.args.language)
+			if not self.args.file is None:
+				d.SLOT_open(self.args.file)
+			d.show()
+			sys.exit(app.exec_())
+			return True
+
+
 
 		if self.args.file==None:
 			raise self.Error("the following arguments are required: file")
@@ -73,8 +94,8 @@ class ConsoleInterpret:
 
 		d = Document(text)
 
-		if self.args.print_exclude:
-			d.print_exclude()
+		if self.args.print_excludes:
+			d.print_excludes()
 			return True
 
 		if self.args.language==None:
@@ -83,15 +104,23 @@ class ConsoleInterpret:
 
 
 		if self.args.print_changes:
+			d.detect_exclude()
 			print(d.run(show_changes=True))
 			return True
 
+		d.detect_exclude()
 		new_text = d.run()
 		if self.args.export:
 			exports_file = self.args.export
 		else:
 			path,ext = os.path.splitext(self.args.file)
-			exports_file = os.path.join(path+'_typo'+ext)
+			exports_file = path+'_typo'+ext
+
+		if os.path.exists(exports_file):
+			ans = input('The file %s already exists. Ovewrite? (yes,no) '%exports_file).lower()
+			while ans not in {"yes","no"}:
+				ans = input('Please answer by `yes` or `no`. ').lower()
+			if ans=='no': return False
 
 		with open(exports_file,'w') as f: f.write(new_text)
 

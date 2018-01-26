@@ -17,27 +17,28 @@ class TLRuleFrench0001 (TLRuleAbstract):
 
 class TLRuleFrench0002 (TLRuleAbstract):
 	number = 2
-	title="No space or unbreakable space after an unbreakable space"
+	title="No space or non-breakable space after an non-breakable space"
 	description=	\
-		"It delete the space or an unbreakable space (\\US) after an "+\
-		"unbreakable space. \n"+\
-		"example :	'year[US] 2001' -> 'year[US]2001' \n"+\
-		"			'year[US][US]2001' -> 'year[US]2001'"
+		"It delete the space or an non-breakable space [⎵] after an "+\
+		"non-breakable space. \n"+\
+		"example :	'year⎵ 2001' -> 'year⎵2001' \n"+\
+		"			'year⎵⎵2001' -> 'year⎵2001'"
 	profile = 0
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
 		if last_char==u'\u00A0' and next_char in [u'\u00A0',' ']:
 			cursor.deleteChar()
+			return True
 		return False
 
 class TLRuleFrench0003 (TLRuleAbstract):
 	number = 3
-	title="No space or unbreakable space  after a break of line."
+	title="No space or non-breakable space  after a break of line."
 
 	description=	\
 		"It deletes the space after a break of line\n"+\
 		"example :	'end of block.\\n ' -> 'end of block.\\n'\n"+\
-		"example :	'end of block.\\n[US]' -> 'end of block.\\n'\n"
+		"example :	'end of block.\\n⎵' -> 'end of block.\\n'\n"
 	in_languges=[u'French']
 	profile = 0
 	def correct(self,last_char,next_char,cursor):
@@ -46,12 +47,12 @@ class TLRuleFrench0003 (TLRuleAbstract):
 			return True
 		return False
 class TLRuleFrench0003_old (TLRuleAbstract):
-	title="No space, unbreakable space or break of line after a break of line."
+	title="No space, non-breakable space or break of line after a break of line."
 
 	description=	\
 		"It deletes the space or break of line after a break of line\n"+\
 		"example :	'end of block.\\n ' -> 'end of block.\\n'\n"+\
-		"example :	'end of block.\\n[US]' -> 'end of block.\\n'\n"+\
+		"example :	'end of block.\\n⎵' -> 'end of block.\\n'\n"+\
 		"			'end of block.\\n\\n' -> 'end of block.\\n'"
 	in_languges=[u'French']
 	profile = 0
@@ -62,17 +63,17 @@ class TLRuleFrench0003_old (TLRuleAbstract):
 		return False
 class TLRuleFrench0004 (TLRuleAbstract):
 	number = 4
-	title="An unbreakable space before ';', ':', '!', '?', and closing "+\
+	title="An non-breakable space before [;], [:], [!], [?], and closing "+\
 		"guillemets."
 	description=	\
-		"Put an unbreakable space (US) before some ponctuation : ';', ':', "+\
-		"'!', '?' and the french closing guillemets.\n"+\
-		"example :	'Bonjour! ' -> 'Bonjour[US]!'\n"+\
-		"			'Bonjour; ' -> 'Bonjour[US];'\n"+\
-		"			'Bonjour: ' -> 'Bonjour[US]:'\n"+\
-		"			'Bonjour? ' -> 'Bonjour[US]?'\n"+\
-		"			'Bonjour ! ' -> 'Bonjour[US]!'\n"+\
-		"			'Bonjour ? ' -> 'Bonjour[US]?'"
+		"Put an non-breakable space [⎵] before some ponctuation : [;], [:], "+\
+		"[!], [?] and the french closing guillemets.\n"+\
+		"example :	'Bonjour! ' -> 'Bonjour⎵!'\n"+\
+		"			'Bonjour; ' -> 'Bonjour⎵;'\n"+\
+		"			'Bonjour: ' -> 'Bonjour⎵:'\n"+\
+		"			'Bonjour? ' -> 'Bonjour⎵?'\n"+\
+		"			'Bonjour ! ' -> 'Bonjour⎵!'\n"+\
+		"			'Bonjour ? ' -> 'Bonjour⎵?'"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -88,12 +89,12 @@ class TLRuleFrench0004 (TLRuleAbstract):
 
 class TLRuleFrench0005 (TLRuleAbstract):
 	number = 5
-	title="An unbreakable space after an opening guillemet"
+	title="An non-breakable space after an opening guillemet"
 	description=	\
-		"It puts an unbreakable space (US) after an opening gullemet (OG) "+\
+		"It puts an non-breakable space [⎵] after an opening gullemet [«] "+\
 		"(or replace the simple space that was there).\n"+\
-		"example :	'[OG] Bonjour' -> '[OG][US]Bonjour'\n"+\
-		"			'[OG]Bonjour' -> '[OG][US]Bonjour'"
+		"example :	'« Bonjour' -> '«⎵Bonjour'\n"+\
+		"			'«Bonjour' -> '«⎵Bonjour'"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -109,19 +110,19 @@ class TLRuleFrench0005 (TLRuleAbstract):
 
 class TLRuleFrench0006 (TLRuleAbstract):
 	number = 6
-	title="No unbreakable space if it is not before a ponctuation or after "+\
+	title="No non-breakable space if it is not before a ponctuation or after "+\
 			"an oppening guillemet or after a dialog dash, or a number."
 	description=	\
-		"Usually we prevent using an unbreakable space (US) if it is not "+\
-		"before a ponctuation like ';', ':', '!', '?', or a closing "+\
-		"guillemet or a dialog dash or a number. It can also be used after "+\
-		"an opening guillemet. It replaces the unbreakable space by a "+\
+		"Usually we prevent using an non-breakable space [⎵] if it is not "+\
+		"before a ponctuation like [;], [:], [!], [?], or a closing "+\
+		"guillemet or a dialog dash [–] or a number. It can also be used after "+\
+		"an opening guillemet. It replaces the non-breakable space by a "+\
 		"simple space.\n"+\
-		"example :	'Je[US]suis' -> 'Je suis'\n"+\
-		"			'[OG][US]\\Bonjour' -> same\n"+\
-		"			'Bonjour[US]!' -> same\n"+\
-		"			'[DD][US]Salut -> same\n"+\
-		"			'200[US]000 -> same"
+		"example :	'Je⎵suis' -> 'Je suis'\n"+\
+		"			'«⎵Bonjour' -> '«⎵Bonjour' (same)\n"+\
+		"			'Bonjour⎵!' -> 'Bonjour⎵!' (same)\n"+\
+		"			'–⎵Salut' -> '–⎵Salut' (same)\n"+\
+		"			'200⎵000' -> '200⎵000' (same)"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -140,10 +141,10 @@ class TLRuleFrench0007 (TLRuleAbstract):
 	number = 7
 	title="No space before a point or a comma."
 	description=	\
-		"It deletes a space or an unbreakable space (US) before a comma.\n"+\
-		"example :	'I agree .' -> 'I agree.'\n"+\
-		"			'I agree[US].' -> 'I agree.'\n"+\
-		"			'Charles , you and me.' -> 'Charles, you and me.'"
+		"It deletes a space or an non-breakable space [⎵] before a comma.\n"+\
+		"example :	'Très bien .' -> 'Très bien.'\n"+\
+		"			'Très bien⎵.' -> 'Très bien.'\n"+\
+		"			'Charles , toi et moi.' -> 'Charles, toi et moi.'\n"
 	profile = 0
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -154,14 +155,14 @@ class TLRuleFrench0007 (TLRuleAbstract):
 
 class TLRuleFrench0008 (TLRuleAbstract):
 	number = 8
-	title="A space or a newline after ';' or ':'."
+	title="A space or a newline after [;] or [:]."
 	description=	\
-		"Check if there is a newline or a space after ';' or ':' and if it "+\
-		"is not the case, it inserts one (replacing the unbreakable space "+\
+		"Check if there is a newline or a space after [;] or [:] and if it "+\
+		"is not the case, it inserts one (replacing the non-breakable space "+\
 		"is necessary.\n"+\
-		"example :	'I agree;and you' -> 'I agree; and you'\n"+\
-		"			'I agree:it is coherent' -> 'I agree: it is coherent'\n"+\
-		"			'I said to him:\n' -> same"
+		"example :	'Oui;et vous' -> 'Oui; et vous'\n"+\
+		"			'Oui:cela est cohérent' -> 'Oui: cela est cohérent'\n"+\
+		"			'Je lui dis:\\n' -> 'Je lui dis:\\n' (same) \n"
 	profile = 0
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -177,14 +178,15 @@ class TLRuleFrench0009 (TLRuleAbstract):
 	number = 9
 	title="Replace the typewriter apostrophe by a curved apostrophe."
 	description=	\
-		"Replace a the char ['] by a curved apostrophe (CA).\n\
-		example :	'It's me' -> 'It[CA]s me'"
+		"Replace a the char ['] by a curved apostrophe [’].\n\
+		example :	'C'est moi' -> 'C’est moi'"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
 		if next_char==u"'":
 			cursor.deleteChar()
 			cursor.insertText(u'\u2019')
+			return True
 		return False
 
 class TLRuleFrench0010 (TLRuleAbstract):
@@ -192,12 +194,12 @@ class TLRuleFrench0010 (TLRuleAbstract):
 	title="Replace the char [\"] by a opening or closing guillemet"
 	description=	\
 		"When pressing the char [\"], it replace by : an opening guillemet "+\
-		"(OG) if it is preceded by a space, an unbreakable space (US) or a "+\
-		"newline ; a closing guillemet (CG) otherwise. It also insert an "+\
-		"unbreakable space after the opening guillemet and before the "+\
+		"[«] if it is preceded by a space, an non-breakable space [⎵] or a "+\
+		"newline ; a closing guillemet [»] otherwise. It also insert an "+\
+		"non-breakable space after the opening guillemet and before the "+\
 		"closing guillemet.\n"+\
-		"example :	'\"Bonjour' -> '[OG][US]Bonjour'"+\
-		"			'Salut.\"' -> 'Salut.[US][CG]'"
+		"example :	'\"Bonjour' -> '«⎵Bonjour'"+\
+		"			'Salut.\"' -> 'Salut.⎵»'"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -212,30 +214,13 @@ class TLRuleFrench0010 (TLRuleAbstract):
 
 		return False
 
+
 class TLRuleFrench0011 (TLRuleAbstract):
 	number = 11
-	title='''Replace '"' by an openning/closing guillement'''
-	description='''Replace '"' by an openning/closing guillement'''
-	in_languges=[u'French']
-	profile = 1
-	def correct(self,last_char,next_char,cursor):
-
-		if last_char==u'"':
-			if next_char==u' ':
-				cursor.deletePreviousChar()
-				cursor.insertText(u'\u00A0\u00BB')
-			else :
-				cursor.deletePreviousChar()
-				cursor.insertText(u'\u00AB\u00A0')
-			return True
-		return False
-
-class TLRuleFrench0012 (TLRuleAbstract):
-	number = 12
 	title="Replace 3 consecutive points by an ellipsis."
 	description=	\
-		"Replace 3 consecutive points into an ellipsis (E):\n"+\
-		"example :	'\"So...' -> 'So[E]'"
+		"Replace 3 consecutive points into an ellipsis […]:\n"+\
+		"example :	'\"So...' -> 'So…'"
 	profile = 1
 	in_languges=[u'French']
 	def correct(self,last_char,next_char,cursor):
@@ -249,14 +234,14 @@ class TLRuleFrench0012 (TLRuleAbstract):
 				return True
 		return False
 
-class TLRuleFrench0013 (TLRuleAbstract):
-	number = 13
-	title="An unbreakable space before after a diolog dash."
+class TLRuleFrench0012 (TLRuleAbstract):
+	number = 12
+	title="An non-breakable space before after a diolog dash."
 	description=	\
-		"It puts an unbreakable space (US) after a diolog dash (DD) (or "+\
+		"It puts an non-breakable space [⎵] after a diolog dash [—] (or "+\
 		"replace the simple space that was there).\n\
-		example :	'[DD] Bonjour' -> '[DD][US]Bonjour'\n\
-					'[DD]Bonjour' -> '[DD][US]Bonjour"
+		example :	'— Bonjour' -> '—⎵Bonjour'\n\
+					'—Bonjour' -> '—⎵Bonjour"
 	profile = 1
 
 	in_languges=[u'French']
@@ -271,9 +256,9 @@ class TLRuleFrench0013 (TLRuleAbstract):
 				return True
 		return False
 
-class TLWordCorrectionRuleFrench0001 (TLRuleAbstract):
-	number = 1001
-	title=u"Replace the 'oe' by 'u'\u0153''"
+class TLWordCorrectionRuleFrench13 (TLRuleAbstract):
+	number = 13
+	title=u"Replace the [oe] by [œ] and [OE] or [Oe] by [Œ]"
 	description=	\
 		"In French, most of the word with 'oe' have an elision"
 	profile = 1
@@ -283,6 +268,11 @@ class TLWordCorrectionRuleFrench0001 (TLRuleAbstract):
 		if last_word.find(u'oe')!=-1:
 			if last_word not in {'moelle'}:
 				return last_word.replace(u'oe',u'\u0153')
+		elif last_word.find(u'Oe')!=-1:
+				return last_word.replace(u'Oe',u'Œ')
+		elif last_word.find(u'OE')!=-1:
+				return last_word.replace(u'OE',u'Œ')
+
 		return False
 
 language = Language(
@@ -299,8 +289,7 @@ language = Language(
 						TLRuleFrench0009,
 						TLRuleFrench0010,
 						TLRuleFrench0011,
-						TLRuleFrench0012,
-						TLRuleFrench0013],
-	afterWordRules = [ TLWordCorrectionRuleFrench0001 ]
+						TLRuleFrench0012],
+	afterWordRules = [ TLWordCorrectionRuleFrench13 ]
 
 					)

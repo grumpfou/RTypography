@@ -1,6 +1,6 @@
 
 
-class TLRuleEnglish0001 (TLRuleAbstract):
+class TLRuleCatalan0001 (TLRuleAbstract):
 	number = 1
 	title="No space before a space or a break of line"
 	description=	\
@@ -15,7 +15,7 @@ class TLRuleEnglish0001 (TLRuleAbstract):
 			return True
 		return False
 
-class TLRuleEnglish0002 (TLRuleAbstract):
+class TLRuleCatalan0002 (TLRuleAbstract):
 	number = 2
 	title="No space or non-breakable space after an non-breakable space"
 	description=	\
@@ -31,7 +31,7 @@ class TLRuleEnglish0002 (TLRuleAbstract):
 			return True
 		return False
 
-class TLRuleEnglish0003 (TLRuleAbstract):
+class TLRuleCatalan0003 (TLRuleAbstract):
 	number = 3
 	title="No space or non-breakable space  after a break of line."
 
@@ -45,7 +45,7 @@ class TLRuleEnglish0003 (TLRuleAbstract):
 			cursor.deleteChar()
 			return True
 		return False
-class TLRuleEnglish0003old (TLRuleAbstract):
+class TLRuleCatalan0003old (TLRuleAbstract):
 	title="No space or break of line after a break of line. "
 
 	description=	\
@@ -60,7 +60,7 @@ class TLRuleEnglish0003old (TLRuleAbstract):
 			return True
 		return False
 
-class TLRuleEnglish0004 (TLRuleAbstract):
+class TLRuleCatalan0004 (TLRuleAbstract):
 	number = 4
 	title="No space or non-breakable space before [,], [;], [:], [!], [?]"
 	description=	\
@@ -83,7 +83,7 @@ class TLRuleEnglish0004 (TLRuleAbstract):
 		return False
 
 
-class TLRuleEnglish0005 (TLRuleAbstract):
+class TLRuleCatalan0005 (TLRuleAbstract):
 	number = 5
 	title="Replace the char [\"] by a opening or closing quatation mark [”]"
 	description=	\
@@ -108,7 +108,7 @@ class TLRuleEnglish0005 (TLRuleAbstract):
 
 		return False
 
-class TLRuleEnglish0006 (TLRuleAbstract):
+class TLRuleCatalan0006 (TLRuleAbstract):
 	number = 6
 	title="No space or non-breakable space after an opening guillemet."
 	description=	\
@@ -125,7 +125,7 @@ class TLRuleEnglish0006 (TLRuleAbstract):
 				return True
 		return False
 
-class TLRuleEnglish0007 (TLRuleAbstract):
+class TLRuleCatalan0007 (TLRuleAbstract):
 	number = 7
 	title="No space or non-breakable space before an closing guillemet."
 	description=	\
@@ -144,7 +144,7 @@ class TLRuleEnglish0007 (TLRuleAbstract):
 
 
 
-class TLRuleEnglish0008 (TLRuleAbstract):
+class TLRuleCatalan0008 (TLRuleAbstract):
 	number = 8
 	title="A space or a newline after [;], [:], [!] or [?] except if it is a "+\
 		"closing quotation mark [”] or [!], [?]"
@@ -175,7 +175,7 @@ class TLRuleEnglish0008 (TLRuleAbstract):
 
 		return False
 
-class TLRuleEnglish0009 (TLRuleAbstract):
+class TLRuleCatalan0009 (TLRuleAbstract):
 	number = 9
 	title="A space or a newline after [.] or [,] except if it is a figure "+\
 		"or a closing quoation mark [”] or another dot"
@@ -201,7 +201,7 @@ class TLRuleEnglish0009 (TLRuleAbstract):
 
 		return False
 
-class TLRuleEnglish0010 (TLRuleAbstract):
+class TLRuleCatalan0010 (TLRuleAbstract):
 	number = 10
 	title="Replace the typewriter apostrophe by a curved apostrophe."
 	description=	\
@@ -216,7 +216,7 @@ class TLRuleEnglish0010 (TLRuleAbstract):
 			return True
 		return False
 
-class TLRuleEnglish0011 (TLRuleAbstract):
+class TLRuleCatalan0011 (TLRuleAbstract):
 	number = 11
 	title="Replace 3 consecutive points by an ellipsis."
 	description=	\
@@ -237,16 +237,16 @@ class TLRuleEnglish0011 (TLRuleAbstract):
 
 
 
-language = Language(name="English",code="en",
-	afterCharRules=[TLRuleEnglish0001,
-					TLRuleEnglish0002,
-					TLRuleEnglish0003,
-					TLRuleEnglish0004,
-					TLRuleEnglish0005,
-					TLRuleEnglish0006,
-					TLRuleEnglish0007,
-					TLRuleEnglish0008,
-					TLRuleEnglish0009,
-					TLRuleEnglish0010,
-					TLRuleEnglish0011]
+language = Language(name="Catalan",code="ca",
+	afterCharRules=[TLRuleCatalan0001,
+					TLRuleCatalan0002,
+					TLRuleCatalan0003,
+					TLRuleCatalan0004,
+					TLRuleCatalan0005,
+					TLRuleCatalan0006,
+					TLRuleCatalan0007,
+					TLRuleCatalan0008,
+					TLRuleCatalan0009,
+					TLRuleCatalan0010,
+					TLRuleCatalan0011]
 					)
