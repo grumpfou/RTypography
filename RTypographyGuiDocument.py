@@ -10,6 +10,8 @@ import sys,codecs,os
 
 list_char_nums = ["⓪","①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫","⑬","⑭","⑮","⑯","⑰","⑱","⑲","⑳"]
 
+import pathlib
+dir_icons = pathlib.Path(__file__).absolute().parent/'icons'
 
 
 class GuiDocument(QtGui.QTextDocument):
@@ -176,10 +178,10 @@ class GuiMainWindow(QtWidgets.QMainWindow):
 		self.action_save = QtWidgets.QAction('Save')
 		self.actions_list = [action_open, action_detect_exclude, action_highlight, self.action_run, self.action_save]
 
-		self.action_run.setIcon(QtGui.QIcon('./icons/run.png'))
-		action_open.setIcon(QtGui.QIcon('./icons/open.png'))
-		self.action_save.setIcon(QtGui.QIcon('./icons/save.png'))
-		action_highlight.setIcon(QtGui.QIcon('./icons/lock_pink.png'))
+		self.action_run.setIcon (QtGui.QIcon(str(dir_icons/'run.png')))
+		action_open.setIcon     (QtGui.QIcon(str(dir_icons/'open.png')))
+		self.action_save.setIcon(QtGui.QIcon(str(dir_icons/'save.png')))
+		action_highlight.setIcon(QtGui.QIcon(str(dir_icons/'lock_pink.png')))
 		languages_list = list(dict_languages.keys())
 		languages_list.sort()
 		self.combo_language= QtWidgets.QComboBox()
